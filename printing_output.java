@@ -1,6 +1,5 @@
 public class printing_output {
     public static void main(String[] args) {
-        boolean b = true;
         int age = 24;
         double height = 5.8;
         String name = "Sohan";
