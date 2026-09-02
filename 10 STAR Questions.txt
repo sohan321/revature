@@ -1,12 +1,41 @@
 10 STAR Questions
 
 1. Tell me about a time you faced a challenging technical problem
+
+On the Raytheon Autonomous Vehicle Competition project, I was building a real-time dual-camera detection pipeline on a Raspberry Pi 5. Midway through, our cameras stopped being reliably detected, the device paths would shift between /dev/video0 and /dev/video8 depending on boot order, breaking our pipeline randomly. I dug into the difference between libcamera and GStreamer's camera handling, eventually building libcamera v0.7.0 from the Raspberry Pi fork to get proper IMX708 support on Ubuntu 24.04, and fixed the underlying GStreamer conflicts causing the instability. The pipeline went from intermittently failing to reliably hitting 30 FPS inference with 83% mAP
+
 2. Describe a time you worked on a team project
+
+I was Computer Vision Lead and Scrum Master on an 18-person cross-disciplinary team CS, EE, and ME building an autonomous UAV for the Raytheon competition. I had two tasks, own the detection pipeline itself, and run sprint planning and standups across disciplines that didn't always speak the same technical language. I made sure CV milestones were sequenced around hardware availability from the EE/ME side, so we weren't blocked waiting on each other. We hit 83% mAP, 30 FPS inference, and 95% ArUco tracking accuracy as a team
+
 3. Tell me about a time you disagreed with someone on your team
+
+As Scrum Master on the Raytheon AVC project, part of my role was tracking hours across our 18-person team so we could plan sprints realistically. One teammate pushed back on logging individual hours, his concern was that it could make people feel judged or singled out if their hours looked lower than others, which could hurt team morale. I understood where he was coming from; the last thing I wanted was for tracking to feel punitive. Instead of insisting on individual logs, I proposed we track hours as a team total rather than attributing them to individuals, that still gave me the aggregate data I needed for sprint planning and progress reporting, without singling anyone out. He was on board with that, and it became how we tracked time going forward. It taught me that the goal behind a process matters more than the process itself. I got the information I actually needed while addressing the real concern driving his pushback.
+
 4. Describe a time you failed or made a mistake
+
+Early in debugging the AVC camera pipeline, I assumed the device path instability was a driver issue and spent a day chasing that theory before realizing it was actually a boot-order race condition the OS was enumerating the USB and ribbon cameras in a different order each boot. I'd been too quick to commit to my first hypothesis. Once I recognized that, I traced the actual enumeration behavior, fixed the reference to be stable regardless of boot order, and started writing down my assumptions explicitly before debugging next time, so I could catch myself defaulting to the first plausible theory
+
 5. Tell me about a time you had to learn something new quickly
+
+When I joined the AVC project, I had solid CS fundamentals but no real experience with ROS 2, MAVROS, or ArduPilot — the middleware stack tying our software to the actual flight controller. I had a few weeks before we needed the detection pipeline talking to the drone's control loop. I worked through ROS 2 documentation and existing MAVROS examples in parallel with building our pipeline, treating early integration tests as a forcing function. By the time we needed it, I'd integrated our CV output into a working 50ms control loop
+
 6. Describe a time you had to meet a tight deadline
+
+As the competition deadline approached, our AVC team hit a stretch where several critical pieces, the detection pipeline, flight controller integration, and hardware assembly all needed to come together at once, and we were running out of runway. As Scrum Master, I helped coordinate the final push: we mapped out exactly what had to be finished before we could even test end-to-end, and it became clear we needed to put in some long nights as a team to get there. I stayed late alongside the team debugging integration issues between the CV pipeline and ArduPilot in real time as hardware came online, rather than just assigning tasks and checking in the next day. Everyone showing up for those late sessions is what let us catch and fix issues like the camera device path instability before the competition instead of during it. We walked in with a fully working pipeline: 83% mAP, 30 FPS inference, 95% ArUco tracking accuracy
+
 7. Tell me about a time you took initiative
+
+When our Raytheon AVC team was forming, we had 18 people across CS, EE, and ME with a lot of moving parts and no one yet responsible for keeping the team coordinated with sprint planning, tracking progress, making sure disciplines weren't blocking each other. Nobody assigned that role, and I could see that without it, a team that size would run into coordination problems fast. I volunteered to take on Scrum Master on top of my work as Computer Vision Lead, even though it meant extra responsibility I didn't have to take on. I set up our sprint structure, ran standups across the cross-disciplinary team, and tracked hours and progress so we could plan realistically. Taking that on early meant we had a functioning process in place before we actually needed it under deadline pressure, which paid off when we hit our final crunch before the competition.
+
 8. Describe a time you received critical feedback
+
+"During a code review, a teammate pointed out that the Cypress end-to-end tests I'd written weren't actually covering all the tasks they were supposed to validate, some flows I thought were tested were only partially covered, which meant we had gaps that could let bugs through undetected. My first instinct was to feel a little defensive since the tests were passing, but passing tests that don't cover the right cases are almost worse than no tests, because they give false confidence. I took the feedback, went back through the test cases against the actual task requirements one by one, and rewrote the suite to make sure every critical flow was genuinely exercised end-to-end, not just superficially passing. Since then, I've made it a habit to map test cases directly against requirements before considering a test suite done, rather than just checking that tests run green
+
 9. Talk about a time you had to explain something technical to a non-technical person
+
+As Scrum Master on the AVC team, I regularly had to translate what the CS side was doing, YOLO detection, ArduPilot integration, control loop timing to ME and EE teammates whose expertise was mechanical design and circuitry, not software. Instead of talking in terms of mAP or inference latency, I framed it around what it meant for their side: 'the drone sees the target this reliably, and reacts this fast,' then connected that to what they needed to build around it, like camera mounting tolerances. It kept the whole team aligned without anyone needing to become a CV expert
+
 10. Tell me about a time you had to work with limited resources or information
+
+While building SSRF protection into the webhook system for my task scheduler project, I ran into the DNS rebinding problem, the target of a webhook URL can resolve to one IP at validation time and a different, internal IP at request time, defeating a naive allowlist check. There wasn't a clean off-the-shelf solution for this in my stack, and documentation on the nuance was thin. I had to work through the underlying networking behavior myself, validate my understanding against how the attack actually works, and implement resolution-pinning so the IP validated is the IP actually connected to
