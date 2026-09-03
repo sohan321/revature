@@ -42,6 +42,5 @@ public class analyzer {
         System.out.println("Consonants: " + consonants);
         System.out.println("Digits: " + digit);
         System.out.println("Spaces: " + spaces);
-    }
 
 }

@@ -10,6 +10,7 @@ public class REPLAPP {
         double num2 = 0;
 
         while (!command.equals("quit")) {
+
             command = sc.nextLine().toLowerCase();
             if (command.equals("help")) {
                 System.out.println();
@@ -31,6 +32,7 @@ public class REPLAPP {
                 num2 = sc.nextInt();
                 System.out.println("Result: " + (num1 + num2));
                 System.out.println();
+                command = sc.nextLine();
 
             }
             if (command.equals("subtract")) {
@@ -40,6 +42,7 @@ public class REPLAPP {
                 num2 = sc.nextInt();
                 System.out.println("Result: " + (num1 - num2));
                 System.out.println();
+                command = sc.nextLine();
             }
             if (command.equals("multiply")) {
                 System.out.print("First number: ");
@@ -48,6 +51,7 @@ public class REPLAPP {
                 num2 = sc.nextInt();
                 System.out.println("Result: " + (num1 * num2));
                 System.out.println();
+                command = sc.nextLine();
             }
             if (command.equals("divide")) {
                 System.out.print("First number: ");
@@ -60,6 +64,7 @@ public class REPLAPP {
                 } else {
                     System.out.println("Result: " + (num1 / num2));
                     System.out.println();
+                    command = sc.nextLine();
                 }
             }
             if (command.equals("random")) {
@@ -70,6 +75,7 @@ public class REPLAPP {
                 int rand = (int) (Math.random() * (num2 + 1 - num1)) + (int) num1;
                 System.out.println("Random number: " + rand);
                 System.out.println();
+                command = sc.nextLine();
             }
             if (command.equals("reverse")) {
                 System.out.print("Enter text: ");
