@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sohan Shrestha – Resume</title>
+    <style>
+      /* ---------- Page setup: US Letter, one page ---------- */
+      @page {
+        size: letter;
+        margin: 0.5in 0.6in;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Calibri", "Carlito", "Segoe UI", Arial, sans-serif;
+        font-size: 10.5pt;
+        line-height: 1.25;
+        color: #000;
+        background: #e5e5e5;
+      }
+
+      /* On screen, show a paper-sized sheet; in print, the @page margins take over */
+      .page {
+        width: 8.5in;
+        min-height: 11in;
+        margin: 24px auto;
+        padding: 0.5in 0.6in;
+        background: #fff;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+        .page {
+          width: auto;
+          min-height: 0;
+          margin: 0;
+          padding: 0;
+          box-shadow: none;
+        }
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* ---------- Header ---------- */
+      header {
+        text-align: center;
+        margin-bottom: 6px;
+      }
+      header h1 {
+        font-size: 22pt;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        margin-bottom: 2px;
+      }
+      header .contact {
+        font-size: 10pt;
+      }
+      header .contact span + span::before {
+        content: " | ";
+      }
+
+      /* ---------- Section headings with rule underneath ---------- */
+      section {
+        margin-top: 8px;
+      }
+      section h2 {
+        font-size: 12pt;
+        font-weight: 700;
+        border-bottom: 1px solid #000;
+        padding-bottom: 1px;
+        margin-bottom: 4px;
+      }
+
+      /* ---------- Entry rows: title left, date right (right tab stop) ---------- */
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+      }
+      .row .date {
+        white-space: nowrap;
+      }
+
+      .entry {
+        margin-bottom: 6px;
+      }
+      .entry:last-child {
+        margin-bottom: 0;
+      }
+      .entry .title {
+        font-weight: 700;
+      }
+      .tech {
+        font-style: italic;
+        margin: 1px 0 2px;
+      }
+
+      ul {
+        padding-left: 16px;
+      }
+      li {
+        margin-bottom: 1px;
+      }
+
+      .skills p {
+        margin-bottom: 1px;
+      }
+      .label {
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <h1>Sohan Shrestha</h1>
+        <div class="contact">
+          <span
+            ><a href="mailto:sohanomshrestha@gmail.com"
+              >sohanomshrestha@gmail.com</a
+            ></span
+          >
+          <span
+            ><a href="https://github.com/sohan321">github.com/sohan321</a></span
+          >
+          <span
+            ><a href="https://linkedin.com/in/sohan-shrestha-b3475b26a/"
+              >linkedin.com/in/sohan-shrestha-b3475b26a/</a
+            ></span
+          >
+        </div>
+      </header>
+
+      <section>
+        <h2>Education</h2>
+        <div class="row">
+          <span
+            ><span class="title" style="font-weight: 700"
+              >B.S. Computer Science</span
+            >, University of Texas at Arlington, May 2026 | Magna Cum
+            Laude</span
+          >
+          <span class="date">GPA: 3.76</span>
+        </div>
+        <p>
+          <span class="label">Relevant Coursework:</span> DS&amp;A, AI, ML,
+          Cloud Computing, Databases, Software Engineering
+        </p>
+      </section>
+
+      <section class="skills">
+        <h2>Skills</h2>
+        <p>
+          <span class="label">Languages:</span> Python, Java, C, C++, Go,
+          TypeScript, JavaScript, HTML, CSS, SQL
+        </p>
+        <p>
+          <span class="label">Framework/Tools:</span> ROS, Linux, Docker,
+          GStreamer, CI/CD, FastAPI, PostgreSQL, REST APIs, Node.js, Cypress,
+          React
+        </p>
+        <p>
+          <span class="label">AI/ML:</span> TensorFlow, YOLO, Computer Vision,
+          OpenAI API, Embeddings
+        </p>
+        <p>
+          <span class="label">Cloud:</span> AWS (EC2, S3, IAM), GCP (Cloud Run,
+          BigQuery, Bigtable)
+        </p>
+        <p>
+          <span class="label">Certifications:</span> AWS Certified Cloud
+          Practitioner
+        </p>
+      </section>
+
+      <section>
+        <h2>Experience</h2>
+
+        <div class="entry">
+          <div class="row">
+            <span class="title"
+              >Cosmix Solutions – Software Engineering Intern</span
+            >
+            <span class="date">March 2024 – August 2025</span>
+          </div>
+          <p class="tech">
+            Technologies: React, Cypress, Golang, PostgreSQL, TypeScript, Claude
+            Code
+          </p>
+          <ul>
+            <li>
+              Developed automated Cypress testing infrastructure achieving 30%
+              test coverage across critical user workflows, improving
+              engineering reliability and accelerating release validation.
+            </li>
+            <li>
+              Developed and deployed a PDF report generation feature using
+              Golang and Maroto while integrating new REST API endpoints.
+            </li>
+            <li>
+              Improved PostgreSQL query performance by 40% by implementing
+              indexing strategies, optimizing backend data retrieval workflows
+              and maintainability.
+            </li>
+            <li>
+              Built inventory quantity summary and detail reporting features
+              using Golang, PostgreSQL, and TypeScript, giving users real-time
+              visibility into stock levels.
+            </li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="row">
+            <span class="title">Raytheon AVC – Software Engineer</span>
+            <span class="date">August 2025 – May 2026</span>
+          </div>
+          <p class="tech">
+            Technologies: Python, ROS 2, MAVROS, ArduPilot, GStreamer,
+            libcamera, BrainChip AKD1000, Claude Code
+          </p>
+          <ul>
+            <li>
+              Led Agile sprint planning and cross-functional coordination across
+              an 18-member team (CS, EE, ME) over 8 three-week sprints, driving
+              on-schedule delivery of all competition milestones.
+            </li>
+            <li>
+              Trained a YOLO-based object detection model achieving 83% accuracy
+              on a custom dataset, optimized to run in real time on a Raspberry
+              Pi 5 with specialized AI hardware.
+            </li>
+            <li>
+              Engineered dual IMX708 camera pipeline using libcamera v0.7.0 and
+              GStreamer, sustaining 30 FPS inference under embedded hardware
+              constraints.
+            </li>
+            <li>
+              Developed real-time autonomous flight software integrating ArUco
+              marker tracking (95% tracking accuracy), velocity-axis control,
+              and sensor fusion (TFMini Plus rangefinder) over MAVROS/ArduPilot
+              on embedded Linux, achieving 50ms control loop latency.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Projects</h2>
+
+        <div class="entry">
+          <div class="row">
+            <span class="title">Distributed Task Scheduler</span>
+            <span class="date">March 2026 – Present</span>
+          </div>
+          <p class="tech">
+            Technologies: Python, FastAPI, PostgreSQL, Redis, Docker, Terraform,
+            AWS (ECS Fargate, RDS, ElastiCache)
+          </p>
+          <ul>
+            <li>
+              Built a Celery/Sidekiq-style distributed job queue from scratch: a
+              FastAPI service for job submission/status, Redis-backed worker
+              processing, PostgreSQL as the durable system of record, plus
+              priority and delayed job execution via Redis sorted sets.
+            </li>
+            <li>
+              Implemented production-grade reliability: exponential backoff with
+              jitter, lease/visibility-timeout recovery for crashed workers,
+              automatic dead-lettering, and an orphan-sweep backstop for race
+              conditions.
+            </li>
+            <li>
+              Instrumented the system with structured logging and Prometheus
+              metrics, deployed it to AWS (ECS Fargate, RDS, ElastiCache) via
+              Terraform, and added a webhook delivery system with
+              retry/backoff/dead-letter handling and SSRF protection.
+            </li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="row">
+            <span class="title">AI-Powered Resume Tailoring Bot</span>
+            <span class="date">April 2026 – Present</span>
+          </div>
+          <p class="tech">
+            Technologies: Node.js, Python, Discord.js, OpenAI API, Cheerio,
+            python-docx
+          </p>
+          <ul>
+            <li>
+              Built an LLM-powered automation platform using GPT-4.1 and OpenAI
+              APIs to parse, validate, and transform unstructured job
+              description data into structured, ATS-optimized resumes.
+            </li>
+            <li>
+              Automated end-to-end .docx generation pipeline using python-docx,
+              reducing manual resume tailoring time from 30+ minutes to under 30
+              seconds per application.
+            </li>
+            <li>
+              Integrated a cron-scheduled web scraper using Cheerio and Axios to
+              surface new grad SWE job postings every 6 hours automatically.
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
