@@ -23,9 +23,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
-
-
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
@@ -37,70 +34,73 @@ public class StudentController {
     }
 
     /*
-            ANTI-PATTERNS - DON'T DO STUFF LIKE THIS
-            http://localhost:8080/students/getstudent
-            http://localhost:8080/students/deletestudent
-            http://localhost:8080/students/updatestudent
-    */
+     * ANTI-PATTERNS - DON'T DO STUFF LIKE THIS
+     * http://localhost:8080/students/getstudent
+     * http://localhost:8080/students/deletestudent
+     * http://localhost:8080/students/updatestudent
+     */
 
     // GET localhost:8080/api/students
     @GetMapping
     public List<Student> getAllStudents(
-        @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "10") int count,
-        @RequestParam(defaultValue = "true") boolean asc) {
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int count,
+            @RequestParam(defaultValue = "true") boolean asc) {
 
         return studentService.getAllStudents(page, count, asc);
     }
 
-   @PostMapping
-   public ResponseEntity<Student> insertStudent(@Valid @RequestBody StudentWriteDto student) {
-       
+    @PostMapping
+    public ResponseEntity<Student> insertStudent(@Valid @RequestBody StudentWriteDto student) {
+
         Student savedStudent = studentService.insertStudent(student);
 
         // POST localhost:8080/api/students
         return ResponseEntity
-            .created(
-                ServletUriComponentsBuilder
-                    .fromCurrentRequest()
-                    .path("/{id}")
-                    .buildAndExpand(savedStudent.getId())
-                    .toUri()    
-            )
-            .body(savedStudent);
-   }
+                .created(
+                        ServletUriComponentsBuilder
+                                .fromCurrentRequest()
+                                .path("/{id}")
+                                .buildAndExpand(savedStudent.getId())
+                                .toUri())
+                .body(savedStudent);
+    }
 
-   
-   // route paramter - typically used for resource location
-   // GET http://localhost:8080/api/students/3
+    // route paramter - typically used for resource location
+    // GET http://localhost:8080/api/students/3
 
-   // query parameter - typically used for filtering/searching
-   // GET http://localhost:8080/api/students?lastName=wilson&grade=b
-   @GetMapping("/{id}")
-   public Student getStudentById(@PathVariable int id) {
+    // query parameter - typically used for filtering/searching
+    // GET http://localhost:8080/api/students?lastName=wilson&grade=b
+    @GetMapping("/{id}")
+    public Student getStudentById(@PathVariable int id) {
         return studentService.getStudentById(id);
-   }
+    }
 
-   // GET http://localhost:8080/api/students?lastName=wilson
-   @GetMapping(params = "lastName")
-   public List<Student> getStudentsByLastName(@RequestParam String lastName) {
-    return studentService.getStudentsByLastName(lastName);
-   }
+    // GET http://localhost:8080/api/students?lastName=wilson
+    @GetMapping(params = "lastName")
+    public List<Student> getStudentsByLastName(@RequestParam String lastName) {
+        return studentService.getStudentsByLastName(lastName);
+    }
 
-   @DeleteMapping("/{id}")
-   public ResponseEntity<Void> deleteStudent(@PathVariable int id) {
-    studentService.deleteStudent(id);
-    return ResponseEntity.noContent().build();
-   }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteStudent(@PathVariable int id) {
+        studentService.deleteStudent(id);
+        return ResponseEntity.noContent().build();
+    }
 
-   @PutMapping("/{id}")
-   public Student updateStudent(@PathVariable int id, @Valid @RequestBody Student student) {
-       return studentService.updateStudent(id, student);
-   }
+    @PutMapping("/{id}")
+    public Student updateStudent(@PathVariable int id, @Valid @RequestBody Student student) {
+        return studentService.updateStudent(id, student);
+    }
 
-   @GetMapping(params = "school")
-   public List<Student> getStudentsBySchoolName(@RequestParam String school) {
+    @GetMapping(params = "school")
+    public List<Student> getStudentsBySchoolName(@RequestParam String school) {
         return studentService.findStudentsBySchoolName(school);
-   }
-    
+    }
+
+    @GetMapping("/gmail")
+    public List<Student> getGmailStudents() {
+        return studentService.getGmailStudents();
+    }
+
 }

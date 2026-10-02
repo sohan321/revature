@@ -45,6 +45,7 @@ public class Student {
         orphanRemoval = true,
         cascade = CascadeType.ALL
     )
+    @JsonIgnore
     private List<Enrollment> enrollments = new ArrayList<>();
 
     @Size(max=20)

@@ -1,5 +1,6 @@
 package com.spring.demo.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -16,7 +17,10 @@ import com.spring.demo.dao.EnrollmentRepository;
 import com.spring.demo.dao.SchoolRepository;
 import com.spring.demo.dao.StudentDAO;
 import com.spring.demo.dao.StudentRepository;
+import com.spring.demo.domain.Course;
+import com.spring.demo.domain.Enrollment;
 import com.spring.demo.domain.Student;
+import com.spring.demo.dto.EnrollmentWriteDto;
 import com.spring.demo.dto.StudentWriteDto;
 import com.spring.demo.domain.School;
 import com.spring.demo.exceptions.RecordNotFoundException;
@@ -111,6 +115,11 @@ public class StudentService {
         return studentRepo.findByLastName(lastName);
     }
 
+    @Transactional(readOnly = true)
+    public List<Student> getGmailStudents() {
+        return studentRepo.findGmailStudents();
+    }
+
     // we don't need a call to DAO here
     // since this is in a transaction and existingStudent is a
     // managed entitiy, any changes to it will be tracked
@@ -140,6 +149,46 @@ public class StudentService {
 
 
         return school;
+    }
+
+    // COURSES
+    @Transactional
+    public Course insertCourse(Course course) {
+        return courseRepo.save(course);
+    }
+
+    @Transactional(readOnly = true)
+    public Course getCourseById(int id) {
+        return courseRepo.findById(id)
+            .orElseThrow(() ->
+                new RecordNotFoundException(
+                    "Course not found with id: " + id
+                )
+            );
+    }
+
+    // ENROLLMENTS
+
+    // the DTO only carries ids, so we look up the real entities here
+    // and build the Enrollment ourselves - the client never sends an entity
+    @Transactional
+    public Enrollment enrollStudent(EnrollmentWriteDto dto) {
+        Student student = getStudentById(dto.getStudentId());
+        Course course = getCourseById(dto.getCourseId());
+
+        Enrollment enrollment = new Enrollment(
+            student,
+            course,
+            LocalDate.now(),
+            dto.getGrade()
+        );
+
+        return enrollmentRepo.save(enrollment);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Enrollment> getAllEnrollments() {
+        return enrollmentRepo.findAll();
     }
 
 }
